@@ -1,0 +1,130 @@
+$font-default: 'Source Sans Pro', sans-serif;
+$primary-color: #333;
+$bg-home : '../assets/bg-home.jpg';
+
+@import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
+
+body {
+    font-family: $font-default;
+    margin: 0;
+    padding: 0;
+    background-image: url($bg-home);
+    background-repeat: no-repeat;
+    background-position : center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.scroll-style::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.scroll-style::-webkit-scrollbar
+{
+    width: 8px;
+    height: 8px;
+    background-color: #F5F5F5;
+}
+
+.scroll-style::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: teal;
+}
+
+/* classes */
+.hide { display: none !important; }
+.mg-auto { margin: auto !important; }
+.mg-0{ margin: 0 !important; }
+.pd-0{ padding: 0 !important; }
+.title-font { 
+    font-family: 'Kite One', sans-serif !important;
+    font-size: 1.2em; 
+}
+.ovf-x {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.ovf-y {
+    overflow-y: auto;
+}
+.vh {
+    max-height: 100vh;
+}
+h1 {
+    font-size: 1.2em;
+}
+
+/* Layout */
+.cover {
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.336);
+}
+
+    /* flex kanban container */
+        /* #Kanban Category */
+        #backlog{
+            max-height: 500px !important;
+        }
+        #backlog div h1 {
+            color: #00284e;
+        }
+        #backlog .kanban {
+            border: 2px solid #c2c2c2;
+        }
+        #todo div h1 {
+            color: #004e48;
+        }
+        #todo .kanban {
+            border: 2px solid #03ccbb;
+        }
+    .flex-wrapper {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .f-col {
+        flex-direction: column;
+    }
+
+    .flex-cont {
+        padding: 10px !important;
+        margin: 10px !important;
+        border : 1px solid #bebebe;
+        background-color: #fff;
+        max-height: 100%;
+        width: 100%;
+    }
+    .flex-cont h1 {
+        font-weight: bold;
+    }
+
+    #kanban-container {
+        margin-top: 5px !important;
+        width: 100%;
+    }
+    .kanban {
+        padding: 10px !important;
+        margin-top: 10px;
+        width: 100% !important;
+    }
+    .kanban h1 {
+        font-size: 15px !important;
+    }
+    #kanban div.flex-wrapper.ovf-x {
+        min-height: 100vh;
+    }
+    /* kanban flex content */
+    .kanban-title {
+        margin-bottom: 10px !important;
+    }
+    .kanban-footer {
+        margin-top: 10px !important;
+    }
+    .kanban-title h1 {
+        font-size: 24px !important;
+    }
