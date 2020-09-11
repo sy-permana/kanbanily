@@ -7,6 +7,7 @@ router.get('/', (req, res) => res.status(200).json({ msg : 'successfully connect
 // user router : login, register
 router.post('/register', Controller.register);
 router.post('/login', Controller.login);
+router.post('/googleSign', Controller.googleSign);
 
 // task CRUD authorization
 router.use('/tasks', taskRouters);

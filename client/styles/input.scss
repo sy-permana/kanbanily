@@ -1,18 +1,58 @@
 $font-default: 'Source Sans Pro', sans-serif;
-$primary-color: #333;
-$bg-home : '../assets/bg-home.jpg';
+
+$landing-bg: rgba(213, 215, 178, 1);
+$home-bg: rgba(144, 188, 203, 1);
+
+$bg-home : '../assets/bg-home.svg';
+
+$backlog-bg : rgba(81, 0, 202, 0.5);
+$todo-bg : rgba(255, 217, 0, 0.5);
+$doing-bg : rgba(0, 153, 255, 0.5);
+$done-bg : rgba(0, 203, 169, 0.5);
 
 @import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
+
+/* VUE */
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+opacity: 0;
+}
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+  /* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+  }
 
 body {
     font-family: $font-default;
     margin: 0;
     padding: 0;
+    // background-color: $home-bg;
+    // background-image: url($bg-home);
+    // background-repeat: no-repeat;
+    // background-position : bottom;
+    // background-attachment: fixed;
+    // background-size: contain;
+}
+
+#homepage-bg {
+    background-color: $home-bg;
     background-image: url($bg-home);
     background-repeat: no-repeat;
-    background-position : center;
+    background-position : bottom;
     background-attachment: fixed;
-    background-size: cover;
+    background-size: contain;
 }
 
 .scroll-style::-webkit-scrollbar-track
@@ -24,7 +64,7 @@ body {
 
 .scroll-style::-webkit-scrollbar
 {
-    width: 8px;
+    width: 0px;
     height: 8px;
     background-color: #F5F5F5;
 }
@@ -41,6 +81,7 @@ body {
 .mg-auto { margin: auto !important; }
 .mg-0{ margin: 0 !important; }
 .pd-0{ padding: 0 !important; }
+.wd-100{ width: 100%; }
 .title-font { 
     font-family: 'Kite One', sans-serif !important;
     font-size: 1.2em; 
@@ -55,76 +96,222 @@ body {
 .vh {
     max-height: 100vh;
 }
+.text-shadow {
+    text-shadow: 0px 0px 10px rgba(194, 194, 194, 0.664);
+}
+
+/* to style owned card */
+.own {
+    border-left-color:rgba(70, 228, 56, 0.733) !important;
+}
 h1 {
     font-size: 1.2em;
 }
-
+h1.title{
+    font-weight: bold;
+}
+h1,h2,h3,h4,h5,h6 {
+    cursor: default;
+}
+i {
+    cursor: pointer;
+}
 /* Layout */
 .cover {
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.336);
 }
 
     /* flex kanban container */
         /* #Kanban Category */
-        #backlog{
-            max-height: 500px !important;
+        #backlog, #todo, #doing, #done { background-color: rgba(255, 255, 255, 0.9); }
+        #backlog span {
+            color: $backlog-bg
         }
-        #backlog div h1 {
-            color: #00284e;
+        #todo span {
+            color: $todo-bg
         }
-        #backlog .kanban {
-            border: 2px solid #c2c2c2;
+        #doing span {
+            color: $doing-bg
         }
-        #todo div h1 {
-            color: #004e48;
+        #done span{
+            color: $done-bg
         }
-        #todo .kanban {
-            border: 2px solid #03ccbb;
+
+        .each-kanban-container {
+            max-height: 100vh;
         }
-    .flex-wrapper {
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
+
+        .border-backlog {
+            border-left: 4px solid $backlog-bg;
+        }
+        
+        .border-todo {
+            border-left: 4px solid $todo-bg;
+        }
+        
+        .border-doing {
+            border-left: 4px solid $doing-bg;
+        }
+        
+        .border-done {
+            border-left: 4px solid $done-bg;
+        }
+        
+
+    .kanban-container {
+        margin: 0px;
     }
-    .f-col {
-        flex-direction: column;
+    .each-kanban {
+        margin: 7px;
+        background-color: rgba(255, 255, 255, 0.9);
+        transition : 0.4s;
+    }
+    .each-kanban:hover {
+        background-color: rgba(255, 255, 255, 0.99);
+        border-left-width: 7px;
     }
 
-    .flex-cont {
-        padding: 10px !important;
-        margin: 10px !important;
-        border : 1px solid #bebebe;
-        background-color: #fff;
-        max-height: 100%;
-        width: 100%;
-    }
-    .flex-cont h1 {
-        font-weight: bold;
-    }
-
-    #kanban-container {
-        margin-top: 5px !important;
-        width: 100%;
-    }
-    .kanban {
-        padding: 10px !important;
-        margin-top: 10px;
-        width: 100% !important;
-    }
-    .kanban h1 {
-        font-size: 15px !important;
-    }
-    #kanban div.flex-wrapper.ovf-x {
-        min-height: 100vh;
-    }
     /* kanban flex content */
     .kanban-title {
-        margin-bottom: 10px !important;
+        margin: 7px;
+        padding: 7px;
+        font-weight: bold;
+    }
+    .top-title {
+        margin: 0 !important;
+        padding: 2px 0;
     }
     .kanban-footer {
         margin-top: 10px !important;
     }
-    .kanban-title h1 {
-        font-size: 24px !important;
-    }
+
+
+/* Authentication Page */
+#login-page {
+    flex-direction: column;
+    align-items: center !important;
+    min-height: 100vh;
+    background-color: #d5d7b2;
+    background-image: url(../assets/bg-login.svg);
+    background-position: bottom;
+    background-repeat : no-repeat;
+    background-size: contain;
+}
+
+#login {
+    max-width: 600px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    background-image: url(../assets/wave.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 5px;
+}
+
+.login-title {
+    height: 20%;
+    text-align: center;
+    font-family: 'Oleo Script', cursive;
+}
+.login-title h1 {
+    font-size: 3em;
+    color: #fff;
+    text-shadow: 0px 0px 10px rgba(65, 111, 149, 0.9);
+}
+.login-content {
+    height: auto;
+}
+
+.login-content div img {
+    height: 20%;
+    margin-top: 10%;
+}
+#login-form {
+    margin: 0% 5px auto 0 !important;
+    padding: 5%;
+    border-radius: 10px;
+    background-color: rgba(57, 106, 113, 0.9);
+}
+
+
+
+/* Button style */
+.overlayLeftBtn {
+    padding: 6px 24px !important;
+    background-color: hsl(0, 0%, 100%) !important;
+    border-radius: 6px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer;
+}
+
+.overlayLeftBtn span {
+    color: hsl(207, 81%, 62%);
+    font-weight: bold;
+    position: relative !important;
+    z-index: 1 !important;
+    transition: color 0.25s cubic-bezier(.7,0,.9,1);
+}
+
+.overlayLeftBtn::before {
+    content: '';;
+    position: absolute;
+    top: 50% !important;
+    left: 0;
+    border-radius: 6px;
+    transform: translate(-101%, -50%);
+    width: 100% !important;
+    height: 100% !important;
+    // background-color: hsl(188, 33%, 33%);
+    background-color: hsl(207, 81%, 62%);
+    transition: transform 0.25s cubic-bezier(.7,0,.9,1);
+}
+
+.overlayLeftBtn:hover span {
+    color: hsl(0, 0%, 100%) !important;
+}
+
+.overlayLeftBtn:hover::before {
+    transform: translate(0, -50%) !important;
+}
+
+/* Home Page */
+#home-page {
+    min-height: 100vh;
+    background-color: unset;
+    background-image: url(../src/assets/bg-home-top.svg);
+    background-position: top;
+    background-repeat : no-repeat;
+    // background-size: ;
+}
+
+/* NavBar */
+#navbar {
+    background-color: #f4fafc;
+    border-bottom : 1px solid #a7b2c4;
+}
+#navbar h1 {
+    font-family: 'Oleo Script', cursive;
+    font-size: 2em;
+    color: #416f95;
+}
+#user {
+    background-color: #90bccb;
+    color: #21262e;
+}
+#user h3 {
+    font-size: 1.2em;
+    text-transform : capitalize;
+}
+
+a.dropdown-item:focus {
+    background-color: unset;
+    color: #416f95;
+}
+
+a.dropdown-item:hover {
+    background-color: rgb(145, 145, 145);
+    color: #fff;
+}
