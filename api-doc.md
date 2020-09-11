@@ -154,6 +154,53 @@
     }
     ```
 
+**Google Sign In**
+----
+  OAuth Google
+
+* **URL**
+
+  `/googleSign`
+
+* **Method:**
+  
+  `POST`
+
+* **URL Params**
+
+   `none`
+
+* **Data Params**
+
+  `id_token`
+
+  *you need to successfully signed in using your google account to automatically get `id_token`*
+
+* **Success Response:**
+
+  * **Code:** 200 SIGN IN SUCCESS <br />
+    **Content:**
+    ```json
+    {
+      "access_token": "returningYourJWTAccessToken",
+      "email": "example@email.com",
+      "name": "exmple"
+    }
+    ```
+
+* **Error Response:**
+
+  * **Code:** 500 SERVER ERROR <br />
+    **Content:** 
+    ```json
+    {
+        "errors": [
+            "internal server error"
+        ]
+    }
+    ```
+
+
 # Task Endpoints
 
 **Fetch All Tasks**
