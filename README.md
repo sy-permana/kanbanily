@@ -4,7 +4,7 @@
  ### deploy link : https://kanbanily-cabd6.web.app/ 
  ### github link: https://github.com/sy-permana/Kanban 
  
-##Technology Stack :
+## Technology Stack :
  - Front-End : VueJs, Vue CLI, Vue Router, Vuex, Bootstrap Vue 
  - Back-End : ExpressJs, Sequelize, PostgreSQL, JWT, Google OAUTH
 
